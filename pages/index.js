@@ -3,6 +3,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const getStaticProps = async () => {
   const client = createClient({
@@ -25,13 +26,19 @@ export default function Home({ posts }) {
     <div>
       <span>Blog</span>
       {posts.map((post) => (
-        <>
+        <div key={post.sys.id}>
           <div>{post.sys.createdAt}</div>
-          <div>{post.fields.title}</div>
+          <Link href={`/posts/${post.fields.slug}`}>
+            <h3 className="text-blue-700 cursor-pointer">
+              {post.fields.title}
+            </h3>
+          </Link>
           <div>{post.fields.slug}</div>
           <div>{post.fields.author}</div>
-          <div>{documentToReactComponents(post.fields.content)}</div>
-        </>
+          <article className="prose max-w-none">
+            {documentToReactComponents(post.fields.content)}
+          </article>
+        </div>
       ))}
     </div>
   );
