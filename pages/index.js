@@ -24,7 +24,6 @@ export const getStaticProps = async () => {
 export default function Home({ posts }) {
   return (
     <div>
-      <span>Blog</span>
       {posts.map((post) => (
         <div key={post.sys.id}>
           <div>{post.sys.createdAt}</div>
@@ -35,7 +34,7 @@ export default function Home({ posts }) {
           </Link>
           <div>{post.fields.slug}</div>
           <div>{post.fields.author}</div>
-          <article className="prose max-w-none">
+          <article className="prose max-w-none prose-blue">
             {documentToReactComponents(post.fields.content)}
           </article>
         </div>

@@ -56,7 +56,9 @@ const BlogPost = ({ post }) => {
       <div>{title}</div>
       <div>{slug}</div>
       <div>{author}</div>
-      <div>{documentToReactComponents(content)}</div>
+      <article className="prose max-w-none prose-blue">
+        {documentToReactComponents(content)}
+      </article>
     </>
   );
 };
