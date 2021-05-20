@@ -26,20 +26,24 @@ export default function Home({ posts }) {
   console.log(posts);
   return (
     <div>
-      {posts.map((post) => {
-        const { title, userImage, slug, author, content } = post.fields;
-        return (
-          <BlogCard
-            key={post.sys.id}
-            title={title}
-            userImage={userImage}
-            slug={slug}
-            author={author}
-            createdAt={post.sys.createdAt}
-            content={content}
-          />
-        );
-      })}
+      {posts
+        .map((post) => {
+          const { title, userImage, slug, author, content } = post.fields;
+          return (
+            <BlogCard
+              key={post.sys.id}
+              title={title}
+              userImage={userImage}
+              slug={slug}
+              author={author}
+              createdAt={post.sys.createdAt}
+              content={content}
+            />
+          );
+        })
+        .sort((a, b) => {
+          return new Date(b.props.createdAt) - new Date(a.props.createdAt);
+        })}
     </div>
   );
 }
