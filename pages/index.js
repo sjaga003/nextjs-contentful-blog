@@ -4,6 +4,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import BlogCard from '../components/BlogCard';
 
 export const getStaticProps = async () => {
   const client = createClient({
@@ -22,23 +23,23 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ posts }) {
+  console.log(posts);
   return (
     <div>
-      {posts.map((post) => (
-        <div key={post.sys.id}>
-          <div>{post.sys.createdAt}</div>
-          <Link href={`/posts/${post.fields.slug}`}>
-            <h3 className="text-blue-700 cursor-pointer">
-              {post.fields.title}
-            </h3>
-          </Link>
-          <div>{post.fields.slug}</div>
-          <div>{post.fields.author}</div>
-          <article className="prose max-w-none prose-blue">
-            {documentToReactComponents(post.fields.content)}
-          </article>
-        </div>
-      ))}
+      {posts.map((post) => {
+        const { title, userImage, slug, author, content } = post.fields;
+        return (
+          <BlogCard
+            key={post.sys.id}
+            title={title}
+            userImage={userImage}
+            slug={slug}
+            author={author}
+            createdAt={post.sys.createdAt}
+            content={content}
+          />
+        );
+      })}
     </div>
   );
 }

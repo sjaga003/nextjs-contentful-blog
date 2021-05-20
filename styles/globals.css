@@ -2,6 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-div {
-  @apply text-red-500;
+@layer base {
 }
