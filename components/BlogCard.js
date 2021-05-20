@@ -9,7 +9,7 @@ const BlogCard = ({ title, userImage, author, slug, content, createdAt }) => {
   return (
     <div className="flex flex-col m-4 border-2 p-4 rounded-lg shadow-sm hover:shadow-md">
       <Link href={`/posts/${slug}`}>
-        <span className="font-bold  text-xl hover:text-blue-500 cursor-pointer hover:underline">
+        <span className="font-bold text-xl hover:text-blue-500 cursor-pointer hover:underline mr-auto">
           {title}
         </span>
       </Link>
