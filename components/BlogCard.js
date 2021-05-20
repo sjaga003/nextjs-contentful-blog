@@ -5,6 +5,14 @@ import { ShareIcon } from '@heroicons/react/outline';
 
 const BlogCard = ({ title, userImage, author, slug, content, createdAt }) => {
   const date = new Date(createdAt);
+  let blurb = content.content
+    .find((arr) => arr.nodeType === 'paragraph')
+    .content.map((val) => {
+      if (val.nodeType === 'text' && val.value) {
+        return val.value;
+      }
+    })
+    .join('');
 
   return (
     <div className="flex flex-col m-4 border-2 p-4 rounded-lg shadow-sm hover:shadow-md">
@@ -13,11 +21,7 @@ const BlogCard = ({ title, userImage, author, slug, content, createdAt }) => {
           {title}
         </span>
       </Link>
-      <span className="line-clamp-4 mt-5 text-gray-700">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, veritatis
-        neque? Fugiat debitis voluptate eum, rem quaerat consectetur, labore,
-        nisi officia mollitia quibusdam impedit dolor!
-      </span>
+      <span className="line-clamp-4 mt-5 text-gray-700">{blurb}</span>
       <div className="flex mt-5 items-center justify-between">
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-full overflow-hidden mr-2 select-none">
