@@ -2,8 +2,17 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShareIcon } from '@heroicons/react/outline';
+import { Popover } from '@headlessui/react';
 
-const BlogCard = ({ title, userImage, author, slug, content, createdAt }) => {
+const BlogCard = ({
+  title,
+  userImage,
+  author,
+  slug,
+  content,
+  createdAt,
+  setShareScreenOpen,
+}) => {
   const date = new Date(createdAt);
   let blurb = content.content
     .find((arr) => arr.nodeType === 'paragraph')
@@ -43,7 +52,10 @@ const BlogCard = ({ title, userImage, author, slug, content, createdAt }) => {
             )} ${date.getFullYear()}`}</span>
           </div>
         </div>
-        <div className="bg-gray-300 p-2.5 rounded-full share-button group cursor-pointer">
+        <div
+          onClick={() => setShareScreenOpen(slug)}
+          className="bg-gray-300 p-2.5 rounded-full share-button group cursor-pointer"
+        >
           <ShareIcon className="text-gray-800 h=4 w-4 group-hover:text-blue-500 " />
         </div>
       </div>

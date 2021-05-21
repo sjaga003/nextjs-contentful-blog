@@ -5,6 +5,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import BlogCard from '../components/BlogCard';
+import { useState } from 'react';
+import ShareScreen from '../components/ShareScreen';
 
 export const getStaticProps = async () => {
   const client = createClient({
@@ -23,6 +25,8 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ posts }) {
+  const [shareScreenOpen, setShareScreenOpen] = useState('');
+
   console.log(posts);
   return (
     <div>
@@ -38,12 +42,19 @@ export default function Home({ posts }) {
               author={author}
               createdAt={post.sys.createdAt}
               content={content}
+              setShareScreenOpen={setShareScreenOpen}
             />
           );
         })
         .sort((a, b) => {
           return new Date(b.props.createdAt) - new Date(a.props.createdAt);
         })}
+      {shareScreenOpen && (
+        <ShareScreen
+          setShareScreenOpen={setShareScreenOpen}
+          shareScreenOpen={shareScreenOpen}
+        />
+      )}
     </div>
   );
 }
