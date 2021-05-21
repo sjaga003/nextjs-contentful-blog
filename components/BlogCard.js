@@ -11,7 +11,7 @@ const BlogCard = ({
   slug,
   content,
   createdAt,
-  setShareScreenOpen,
+  setShareScreenData,
 }) => {
   const date = new Date(createdAt);
   let blurb = content.content
@@ -53,7 +53,9 @@ const BlogCard = ({
           </div>
         </div>
         <div
-          onClick={() => setShareScreenOpen(slug)}
+          onClick={() =>
+            setShareScreenData({ isActive: true, title: title, slug: slug })
+          }
           className="bg-gray-300 p-2.5 rounded-full share-button group cursor-pointer"
         >
           <ShareIcon className="text-gray-800 h=4 w-4 group-hover:text-blue-500 " />

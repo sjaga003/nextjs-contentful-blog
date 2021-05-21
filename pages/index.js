@@ -25,7 +25,11 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ posts }) {
-  const [shareScreenOpen, setShareScreenOpen] = useState('');
+  const [shareScreenData, setShareScreenData] = useState({
+    isActive: false,
+    title: '',
+    slug: '',
+  });
 
   console.log(posts);
   return (
@@ -42,17 +46,17 @@ export default function Home({ posts }) {
               author={author}
               createdAt={post.sys.createdAt}
               content={content}
-              setShareScreenOpen={setShareScreenOpen}
+              setShareScreenData={setShareScreenData}
             />
           );
         })
         .sort((a, b) => {
           return new Date(b.props.createdAt) - new Date(a.props.createdAt);
         })}
-      {shareScreenOpen && (
+      {shareScreenData.isActive && (
         <ShareScreen
-          setShareScreenOpen={setShareScreenOpen}
-          shareScreenOpen={shareScreenOpen}
+          setShareScreenData={setShareScreenData}
+          shareScreenData={shareScreenData}
         />
       )}
     </div>
