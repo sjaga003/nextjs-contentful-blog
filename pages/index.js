@@ -36,14 +36,14 @@ export default function Home({ posts }) {
     <div>
       {posts
         .map((post) => {
-          const { title, userImage, slug, author, content } = post.fields;
+          const { title, userImage, slug, author, content, authorData } =
+            post.fields;
           return (
             <BlogCard
               key={post.sys.id}
               title={title}
-              userImage={userImage}
               slug={slug}
-              author={author}
+              authorData={authorData}
               createdAt={post.sys.createdAt}
               content={content}
               setShareScreenData={setShareScreenData}

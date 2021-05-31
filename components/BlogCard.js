@@ -6,12 +6,11 @@ import { Popover } from '@headlessui/react';
 
 const BlogCard = ({
   title,
-  userImage,
-  author,
   slug,
   content,
   createdAt,
   setShareScreenData,
+  authorData,
 }) => {
   const date = new Date(createdAt);
   let blurb = content.content
@@ -22,6 +21,8 @@ const BlogCard = ({
       }
     })
     .join('');
+
+  const { name, profilePicture } = authorData.fields;
 
   return (
     <div className="flex flex-col m-4 border-2 p-4 rounded-lg shadow-sm hover:shadow-md">
@@ -36,14 +37,14 @@ const BlogCard = ({
           <div className="w-10 h-10 rounded-full overflow-hidden mr-2 select-none">
             <Image
               draggable={false}
-              src={`https:${userImage.fields.file.url}`}
-              width={userImage.fields.file.details.image.width}
-              height={userImage.fields.file.details.image.height}
+              src={`https:${profilePicture.fields.file.url}`}
+              width={profilePicture.fields.file.details.image.width}
+              height={profilePicture.fields.file.details.image.height}
             />
           </div>
 
           <div className="flex flex-col">
-            <span className="font-medium">{author}</span>{' '}
+            <span className="font-medium">{name}</span>{' '}
             <span className="text-gray-700">{`${date.getDate()} ${date.toLocaleString(
               'default',
               {
