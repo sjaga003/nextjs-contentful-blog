@@ -22,10 +22,10 @@ const BlogCard = ({
     })
     .join('');
 
-  const { name, profilePicture } = authorData.fields;
+  const { name, profilePicture, authorSlug } = authorData.fields;
 
   return (
-    <div className="flex flex-col m-4 border-2 p-4 rounded-lg shadow-sm hover:shadow-md">
+    <div className="flex flex-col my-4 border-2 p-4 rounded-lg shadow-sm hover:shadow-md">
       <Link href={`/posts/${slug}`}>
         <span className="font-bold text-xl hover:text-blue-500 cursor-pointer hover:underline mr-auto">
           {title}
@@ -44,7 +44,9 @@ const BlogCard = ({
           </div>
 
           <div className="flex flex-col">
-            <span className="font-medium">{name}</span>{' '}
+            <Link href={`/profile/${authorSlug}`}>
+              <span className="font-medium">{name}</span>
+            </Link>{' '}
             <span className="text-gray-700">{`${date.getDate()} ${date.toLocaleString(
               'default',
               {

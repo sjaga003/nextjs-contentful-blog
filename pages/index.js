@@ -36,8 +36,7 @@ export default function Home({ posts }) {
     <div>
       {posts
         .map((post) => {
-          const { title, userImage, slug, author, content, authorData } =
-            post.fields;
+          const { title, slug, content, authorData } = post.fields;
           return (
             <BlogCard
               key={post.sys.id}
