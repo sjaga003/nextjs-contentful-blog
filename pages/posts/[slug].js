@@ -101,7 +101,7 @@ const renderOptions = {
 };
 
 const BlogPost = ({ post }) => {
-  if (!authorData || !postList) {
+  if (!post) {
     return <div>Loading</div>;
   }
   const { createdAt } = post?.sys;
