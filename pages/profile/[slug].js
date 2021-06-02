@@ -56,9 +56,14 @@ export const getStaticProps = async ({ params }) => {
 
 const UserPage = ({ authorData, postList }) => {
   const { authorSlug, name, profilePicture, userDescription } =
-    authorData?.fields;
+    authorData?.fields || {
+      authorSlug: '',
+      name: '',
+      profilePicture: '',
+      userDescription: '',
+    };
 
-  console.log(postList);
+  //   console.log(postList);
 
   const [shareScreenData, setShareScreenData] = useState({
     isActive: false,
