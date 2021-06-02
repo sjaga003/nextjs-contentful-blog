@@ -55,13 +55,12 @@ export const getStaticProps = async ({ params }) => {
 };
 
 const UserPage = ({ authorData, postList }) => {
+  if (!authorData || !postList) {
+    return <div>Loading</div>;
+  }
+
   const { authorSlug, name, profilePicture, userDescription } =
-    authorData?.fields || {
-      authorSlug: '',
-      name: '',
-      profilePicture: '',
-      userDescription: '',
-    };
+    authorData?.fields;
 
   //   console.log(postList);
 
