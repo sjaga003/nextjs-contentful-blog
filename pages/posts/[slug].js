@@ -101,8 +101,8 @@ const renderOptions = {
 };
 
 const BlogPost = ({ post }) => {
-  const { createdAt } = post.sys;
-  const { title, authorData, content } = post.fields;
+  const { createdAt } = post?.sys;
+  const { title, authorData, content } = post?.fields;
   const date = new Date(createdAt);
 
   return (
