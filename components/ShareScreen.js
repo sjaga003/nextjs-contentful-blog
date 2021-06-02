@@ -1,7 +1,10 @@
-import { DuplicateIcon, EyeIcon } from '@heroicons/react/outline';
+import { DuplicateIcon, CheckIcon } from '@heroicons/react/outline';
 import { MailIcon } from '@heroicons/react/solid';
+import { useState } from 'react';
 
 const ShareScreen = ({ shareScreenData, setShareScreenData }) => {
+  const [copiedPressed, setCopiedPressed] = useState(false);
+
   return (
     <div
       onClick={(e) => {
@@ -10,9 +13,9 @@ const ShareScreen = ({ shareScreenData, setShareScreenData }) => {
         }
       }}
       id="shareScreenBackground"
-      className="fixed flex flex-col justify-center items-center top-0 bg-opacity-60 bg-gray-800 h-full w-full"
+      className="fixed flex flex-col justify-center items-center top-0 bg-opacity-60 bg-gray-800 h-full w-full "
     >
-      <div className="w-5/6 h-1/2 opacity-100 bg-white rounded-lg shadow-md flex flex-col items-center justify-center ">
+      <div className="w-5/6 h-1/2 opacity-100 bg-white rounded-lg shadow-md flex flex-col items-center justify-center max-w-xl">
         <div className="flex mb-10 space-x-2">
           {/* button container */}
           <div
@@ -62,17 +65,22 @@ const ShareScreen = ({ shareScreenData, setShareScreenData }) => {
         </div>
 
         <button
-          onClick={() =>
+          onClick={() => {
             navigator.clipboard.writeText(
               `localhost:3000/posts/${shareScreenData.slug}`
-            )
-          }
-          className="flex w-1/2 p-2.5 h-12 bg-gray-300 rounded-lg items-center justify-around group"
+            );
+            setCopiedPressed(true);
+          }}
+          className="flex w-35 p-2.5 h-12 bg-gray-300 rounded-lg items-center justify-around group "
         >
-          <DuplicateIcon className="text-gray-800 h-5 w-5  group-hover:text-blue-500 " />
-          <span className="text-lg group-hover:text-blue-500 font-medium">
+          {copiedPressed ? (
+            <CheckIcon className="text-gray-800 h-5 w-5  group-hover:text-blue-500" />
+          ) : (
+            <DuplicateIcon className="text-gray-800 h-5 w-5  group-hover:text-blue-500" />
+          )}
+          <span className="text-lg group-hover:text-blue-500 font-medium pl-4">
             {' '}
-            Copy Link
+            {copiedPressed ? `Copied` : `Copy Link`}
           </span>
         </button>
       </div>
