@@ -33,28 +33,30 @@ const BlogCard = ({
       </Link>
       <span className="line-clamp-4 mt-5 text-gray-700">{blurb}</span>
       <div className="flex mt-5 items-center justify-between">
-        <div className="flex items-center">
-          <div className="w-10 h-10 rounded-full overflow-hidden mr-2 select-none">
-            <Image
-              draggable={false}
-              src={`https:${profilePicture.fields.file.url}`}
-              width={profilePicture.fields.file.details.image.width}
-              height={profilePicture.fields.file.details.image.height}
-            />
-          </div>
+        <Link href={`/profile/${authorSlug}`}>
+          <div className="flex items-center group cursor-pointer">
+            <div className="w-10 h-10 rounded-full overflow-hidden mr-2 select-none">
+              <Image
+                draggable={false}
+                src={`https:${profilePicture.fields.file.url}`}
+                width={profilePicture.fields.file.details.image.width}
+                height={profilePicture.fields.file.details.image.height}
+              />
+            </div>
 
-          <div className="flex flex-col">
-            <Link href={`/profile/${authorSlug}`}>
-              <span className="font-medium">{name}</span>
-            </Link>{' '}
-            <span className="text-gray-700">{`${date.getDate()} ${date.toLocaleString(
-              'default',
-              {
-                month: 'short',
-              }
-            )} ${date.getFullYear()}`}</span>
+            <div className="flex flex-col">
+              <span className="font-medium group-hover:text-blue-500 group-hover:underline">
+                {name}
+              </span>
+              <span className="text-gray-700">{`${date.getDate()} ${date.toLocaleString(
+                'default',
+                {
+                  month: 'short',
+                }
+              )} ${date.getFullYear()}`}</span>
+            </div>
           </div>
-        </div>
+        </Link>
         <div
           onClick={() =>
             setShareScreenData({ isActive: true, title: title, slug: slug })

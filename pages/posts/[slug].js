@@ -102,8 +102,9 @@ const renderOptions = {
 
 const BlogPost = ({ post }) => {
   const { createdAt } = post.sys;
-  const { title, slug, author, content, userImage } = post.fields;
+  const { title, authorData, content } = post.fields;
   const date = new Date(createdAt);
+
   return (
     <div className="mx-5">
       <span className="text-4xl font-bold">{title}</span>
@@ -118,7 +119,7 @@ const BlogPost = ({ post }) => {
       <article className="prose max-w-none prose-blue">
         {documentToReactComponents(content, renderOptions)}
       </article>
-      <UserCard name={author} image={userImage} />
+      <UserCard authorData={authorData} />
     </div>
   );
 };
