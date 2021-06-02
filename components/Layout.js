@@ -4,9 +4,9 @@ import Nav from './Nav';
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="">
       <Nav />
-      <main className="mx-4 sm:mx-8 md:mx-28 lg:mx-48 xl:mx-96 xl:px-56">
+      <main className="mx-4 sm:mx-8 md:mx-28 lg:mx-48 xl:mx-96 flex flex-col items-center justify-center">
         {children}
       </main>
       <Footer />

@@ -25,7 +25,7 @@ const BlogCard = ({
   const { name, profilePicture, authorSlug } = authorData.fields;
 
   return (
-    <div className="flex flex-col my-4 border-2 p-4 rounded-lg shadow-sm hover:shadow-md">
+    <div className="flex flex-col my-2 border-2 p-4 rounded-lg shadow-sm hover:shadow-md max-w-xl">
       <Link href={`/posts/${slug}`}>
         <span className="font-bold text-xl hover:text-blue-500 cursor-pointer hover:underline mr-auto">
           {title}

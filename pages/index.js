@@ -33,7 +33,7 @@ export default function Home({ posts }) {
 
   console.log(posts);
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center">
       {posts
         .map((post) => {
           const { title, slug, content, authorData } = post.fields;

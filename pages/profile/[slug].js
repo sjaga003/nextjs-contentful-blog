@@ -67,19 +67,21 @@ const UserPage = ({ authorData, postList }) => {
   });
 
   return (
-    <div>
-      <section>
-        <Image
-          src={`https:${profilePicture.fields.file.url}`}
-          width={profilePicture.fields.file.details.image.width}
-          height={profilePicture.fields.file.details.image.height}
-        />
-        <div>
-          <div>About {name}</div>
+    <div className="max-w-xl mb-16">
+      <section className="flex flex-col sm:flex-row sm:border-b-2 sm:border-gray-300 sm:pb-4 ">
+        <div className="sm:pr-6 max-w-sm ">
+          <Image
+            src={`https:${profilePicture.fields.file.url}`}
+            width={profilePicture.fields.file.details.image.width}
+            height={profilePicture.fields.file.details.image.height}
+          />
+        </div>
+        <div className="my-6 border-b-2 border-gray-300 pb-4 sm:border-0">
+          <div className="text-3xl  font-medium mb-4">About {name}</div>
           <div>{userDescription}</div>
         </div>
       </section>
-      <section>
+      <section className="sm:pt-4 flex flex-col">
         {postList
           .map((post) => {
             const { title, slug, content, authorData } = post.fields;
